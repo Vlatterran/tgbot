@@ -24,6 +24,6 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
       - name: build requirements
-        run: poetry export --output requirements.txt
+        run: poetry export --output requirements.txt --without-hashes --without-urls
       - name: docker-compose
         run: docker-compose up -d
