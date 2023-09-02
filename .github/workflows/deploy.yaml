@@ -9,6 +9,8 @@ jobs:
   prepare-environment:
     runs-on: self-hosted # Запускаем на раннере, который настроили до этого.
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
       - name: Stop and remove containers, networks
         run: docker-compose down
       - name: Remove unused data
