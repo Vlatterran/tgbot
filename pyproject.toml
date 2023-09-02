@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "tgbot"
+version = "0.1.0"
+description = ""
+authors = ["Vlatterran <soboleff@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+httpx = "^0.24.1"
+aiogram = "3.0.0rc2"
+bs4 = "^0.0.1"
+lxml = "^4.9.3"
+
+
+[tool.poetry.group.dev.dependencies]
+requests = "^2.31.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+bot = 'tgbot.src.bot:main'

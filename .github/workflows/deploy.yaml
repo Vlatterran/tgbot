@@ -1,0 +1,27 @@
+name: Python package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  prepare-environment:
+    runs-on: self-hosted # Запускаем на раннере, который настроили до этого.
+    steps:
+      - name: Stop and remove containers, networks
+        run: docker-compose down
+      - name: Remove unused data
+        run: docker system prune -a -f
+  deploy:
+    runs-on: self-hosted # Запускаем на раннере, который настроили до этого.
+    needs: prepare-environment # Запускаем только если джоба prepare-environment прошла успешно
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+      - name: build requirements
+        run: poetry export --output requirements.txt
+      - name: docker-compose
+        run: docker-compose up -d
