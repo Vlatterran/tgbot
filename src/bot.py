@@ -27,6 +27,8 @@ async def echo_handler(message: types.Message) -> None:
     day = message.text.split()
     if len(day) == 1:
         day = 'сегодня'
+    else:
+        day = day[-1]
     await answer(message, schedule.lectures(day))
 
 
